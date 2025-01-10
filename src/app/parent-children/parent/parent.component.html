@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <form [formGroup]="parentForm" (ngSubmit)="onSubmit()">
+        <p>Parent:</p>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 text-end" style="background: lightblue;">
+                <mat-slide-toggle matTooltip="Set slider to View/Edit mode" formControlName="txtEdit" [checked]="checked" (change)="onToggleEdit($event)">Edit</mat-slide-toggle>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">&nbsp;</div> 
+        </div>     
+        <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    *Data pass from Child: {{childData}}
+                </div>
+                <div class="col-sm-1"></div>
+         </div>
+         <div class="row">
+                <div class="col-sm-12">&nbsp;</div> 
+         </div>     
+         <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1">
+                <input matInput placeholder="parent" formControlName="txtParent">
+            </div>
+            <div class="col-sm-3">
+                 <button type="button" (click)="passDataToChild();">Pass Data to Child</button>
+            </div>
+            <div class="col-sm-4">
+                 isEditabled from EditSlider:<span style="color: red;">&nbsp;{{isEditable}}</span>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" (click)="setEditToggle();">ResetEditToggle</button>
+            </div>
+             <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">&nbsp;</div> 
+        </div>               
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <button type="button" (click)="appChild.passDataToParent();">Trigger Child *Pass Data to Parent</button>
+            </div>
+            <div class="col-sm-5">
+                <button type="button" (click)="appChild.onClickSubmit();">Trigger Child #onChildSubmit</button>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12"></div>
+        </div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+               <button type="button" (click)="onSubmit();">onParentSubmit</button>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div><hr></div>
+        <div class="row">
+            <div class="col-sm-12"><!-- Children Selector -->
+                <app-child [parentData]   = "parentData"    
+                           [isEditable]   = "isEditable" 
+                           (newDataEvent) = "getDataFromChild($event)" #appChild>
+                </app-child>
+            </div>
+        </div>
+    </form>
+</div>
+<!--
+    <app-parent>
+        output: parentData: any                                       ->parentData
+                passDataToChild() {  
+                  this.parentData = this.parentForm.controls["txtParent"].value;
+                }
+         input: childData: any                                        ->childData 
+                getDataFromChild(event: any) {
+                  this.childData = event
+                }
+     #appChild: appChild.onClickSubmit()
+
+    <app-child>  
+         input: @Input()  parentData: any;                            ->[parentData] 
+        output: @Output() newDataEvent = new EventEmitter<string>();  ->(newDataEvent)
+                 passDataToParent() {
+                   this.newDataEvent.emit(JSON.stringify(this.childForm.value));
+                 }
+                 onClickSubmit();
+-->

@@ -1,0 +1,224 @@
+<div class="container-fluid">
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">Mat table with popover</div>
+        <div class="col-1"></div>
+    </div>    
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+                <table mat-table [dataSource]='dsFundingDocs' class="mat-elevation-z8" matSort aria-describedby="">
+                        <ng-container matColumnDef="userCaseId">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Case</th>
+                          <td mat-cell *matCellDef="let element;">
+                            {{element.userCaseId}}
+                          </td>
+                        </ng-container>
+                        <ng-container matColumnDef="userCaseLineNumberId">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Line</th>
+                          <td mat-cell *matCellDef="let element;">
+                            {{element.userCaseLineNumberId}}
+                          </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="popOver">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Popover</th>
+                          <td mat-cell *matCellDef="let element;" >
+                            <table width="100%">
+                              <tr>
+                                <td width="60%">Notification Title</td>
+                                <td width="40%">
+                                  <!--  
+                                  <mde-popover #appPopover1="mdePopover" [mdePopoverOverlapTrigger]="false">
+                                    <mat-card style="max-width: 300px">
+                                      <mat-card-content>
+                                        {{element.documentNumber}}
+                                      </mat-card-content>
+                                    </mat-card>
+                                  </mde-popover>
+            
+                                  <button mat-raised-button color="primary"
+                                    [mdePopoverTriggerFor]="appPopover1"
+                                     mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger">
+                                      Popover1
+                                  </button>
+                                  -->
+                                </td>
+                              </tr>
+                            </table>
+                            <div></div>
+                          </td>
+                        </ng-container>
+          
+                        <tr mat-header-row *matHeaderRowDef="displayColumnsFD; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayColumnsFD;"
+                            (click)="onRowClick(row)" 
+                            [style.background]="row === selectedRow ? 'lightgrey' : ''"
+                            [ngClass]="{hovered: row.hovered}"
+                            (mouseover)="row.hovered = true" 
+                            (mouseout)="row.hovered = false">
+                        </tr>
+                      </table>
+          
+        </div>
+        <div class="col-1"></div>
+    </div> 
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">Mat table with expend panel</div>
+        <div class="col-1"></div>
+    </div>    
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <!-- Main Table -->
+            <table mat-table 
+            [dataSource]="dsFinancialHistory" multiTemplateDataRows
+            class="mat-elevation-z8" aria-describedby="">
+      
+            <ng-container matColumnDef="createDt">
+            <th mat-header-cell *matHeaderCellDef scope="col">Cycle<br>&nbsp;Date</th>
+            <td mat-cell *matCellDef="let element"> {{element.createDt}} </td>
+            </ng-container>
+                    
+            <ng-container matColumnDef="cycleControlId">
+            <th mat-header-cell *matHeaderCellDef scope="col">Cycle<br>&nbsp; &nbsp;Id</th>
+            <td mat-cell *matCellDef="let element"> {{element.cycleControlId}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="img">
+              <th mat-header-cell *matHeaderCellDef style="width: 10px;" scope="col"></th>
+              <td mat-cell *matCellDef="let element">
+                <div *ngIf="expandedElement != element"><img width="13" height="9" src="assets/images/down-arrow.svg" alt=""></div>
+                <div *ngIf="expandedElement == element"><img width="13" height="9" src="assets/images/up-arrow.svg" alt=""></div>
+              </td>
+              </ng-container>
+      
+            <!-- Expanded Content Column - 
+                  The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+              <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <!--
+                <div class="element-detail" 
+                      [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+      
+                  <div class="element-description">
+      
+                    <table mat-table [dataSource]="element.historySubList" class="mat-elevation-z8" aria-describedby="">
+      
+                      <ng-container matColumnDef="fiscalYearId">
+                          <th mat-header-cell style="background-color: #e7eff6;" *matHeaderCellDef scope="col">Fical Year</th>
+                          <td mat-cell *matCellDef="let element">{{element.fiscalYearId}}</td>
+                      </ng-container>
+                      
+                      <ng-container matColumnDef="account">
+                          <th mat-header-cell style="background-color: #e7eff6;" *matHeaderCellDef scope="col">Account</th>
+                          <td mat-cell *matCellDef="let element">{{element.account}}</td>
+                      </ng-container>
+      
+                      <tr mat-header-row *matHeaderRowDef="displaySubcolumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displaySubcolumns;"></tr>
+                    </table>
+                  </div>
+                </div>
+                -->
+              </td>
+            </ng-container>
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+                class="element-row"
+                [class.expanded-row]="expandedElement === element"
+                (click)="expandedElement = expandedElement === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+            </table>          
+        </div>
+        <div class="col-1"></div>
+    </div>    
+</div>         
+
+
+<div class="container-fluid">
+    <p>&nbsp;</p>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">Mat table with HTTP</div>
+        <div class="col-1"></div>
+    </div>    
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 table-overflow text-right">
+          <!-- Filter Column -->
+        
+           <mat-form-field class="full-width">
+            <span matSuffix><img width="30" height="25" src="assets/images/find_search.png"></span>
+            <input matInput (keyup)="applyFilter($event)">
+          </mat-form-field>
+          
+          <table mat-table [dataSource]="dsPerson" class="mat-elevation-z8">
+                      
+            <!-- First Name Column -->
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef> First Name </th>
+              <td mat-cell *matCellDef="let element">{{element.firstName}} </td>
+            </ng-container>
+                      
+            <!-- Last Name Column -->
+            <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef> Last Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+
+            <!-- SSN Column -->
+            <ng-container matColumnDef="ssn">
+              <th mat-header-cell *matHeaderCellDef> SSN </th>
+              <td mat-cell *matCellDef="let element">
+                <a [routerLink]="['/personDetail', element.ssn]">{{element.ssn}}</a>
+              </td>
+            </ng-container>
+                        
+            <!-- Birthday Column -->
+            <ng-container matColumnDef="birthDay">
+              <th mat-header-cell *matHeaderCellDef> Birthday </th>
+              <td mat-cell *matCellDef="let element">{{element.birthDay}}</td>
+            </ng-container>
+                      
+            <!-- PersonType Column -->
+            <ng-container matColumnDef="personType">
+              <th mat-header-cell *matHeaderCellDef> PersonType </th>
+              <td mat-cell *matCellDef="let element">
+                  <span *ngFor="let personType of personTypes">
+                    <span *ngIf="personType.id==element.pertId">{{personType.type}}</span>
+                  </span> 
+              </td>
+            </ng-container>
+
+            <!-- Phone Column -->
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element; let i = index"> 
+                  <span *ngFor="let item of element.phones; let num = index">
+                    {{item.phone}}&nbsp; &nbsp;{{item.phoneType.type}}<br>
+                  </span>            
+                </td>
+            </ng-container>
+
+            <!-- Delete Column -->
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef> Delete </th>
+              <td mat-cell *matCellDef="let element">&nbsp; &nbsp;
+                <a [routerLink]="" (click)="onClickDelete(element.id)"><img width="20" height="20" src="assets/images/delete.png"></a>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+          </table>
+
+        </div>  
+        <div class="col-sm-1"></div>  
+    </div>
+</div> 

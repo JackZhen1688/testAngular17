@@ -1,0 +1,51 @@
+/* text-field height size */
+::ng-deep .field-height .mat-mdc-text-field-wrapper {
+    height: 40px !important;
+}
+/* text-field-label position */
+::ng-deep .mat-mdc-form-field-flex {
+    margin-top: -7px !important;
+}
+/* text-field background */
+::ng-deep .field-backgroup .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white;
+}
+
+/* mat-hint height */
+::ng-deep .non-hint .mat-mdc-form-field-subscript-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+ 
+    background: red;
+    height: 0px;  
+}
+
+::ng-deep .mdc-text-field-label {
+    padding-top: 5px;
+    padding-bottom: 60px;
+}
+
+/* label padding */  
+::ng-deep .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+    padding-top: 24px;
+    padding-bottom: 8px;
+}
+
+::ng-deep .mdc-text-field-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+
+
+.full-width {
+    width: 100%;
+}
+
+
+
+
+
+
+

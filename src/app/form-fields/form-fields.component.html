@@ -1,0 +1,167 @@
+<div class="container-fluid">
+    <p>&nbsp;</p>
+    <form [formGroup]="form">  
+        <p>Material(15) Standart Fields</p>
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Fill form field</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName="name">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Hint</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Outline form field</mat-label>
+                    <input matInput placeholder="Placeholder">
+                    <mat-icon matSuffix>close</mat-icon>
+                    <mat-hint>Hint</mat-hint>
+                </mat-form-field>
+             </div>
+            <div class="col-sm-3">
+                    <mat-form-field class="full-width">
+                        <mat-label>Clearable input</mat-label>
+                        <input matInput placeholder="name" value="">
+                    </mat-form-field>         
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field>
+                    <div class="matfield-outline-extra">
+                    <mat-select formControlName="txtOption" (selectionChange)="onChange();">
+                      <mat-option value="A">Select Options</mat-option>
+                      <mat-optgroup *ngFor="let group of optionGroups" [label]="group.name" [disabled]="group.disabled" >
+                        <mat-option *ngFor="let option of group.options" [value]="option.value+'@'+option.extra">
+                          {{option.viewValue}}
+                        </mat-option>
+                      </mat-optgroup>
+                    </mat-select>
+                    </div>
+                </mat-form-field> 
+            </div>
+        </div>  
+        <div>&nbsp;</div>
+        <div class="row">
+            <div class="col-sm-3">
+                <button mat-button [matMenuTriggerFor]="main_menu">My menu</button>
+                <mat-menu #main_menu="matMenu">
+                  <ng-container *ngFor="let mainItem of objectKeys(my_menu)">
+                    <button mat-menu-item [matMenuTriggerFor]="sub_menu">{{ mainItem }}</button>
+                    <mat-menu #sub_menu="matMenu">
+                       <button *ngFor="let subItem of my_menu[mainItem]" mat-menu-item [disabled]="subItem.disabled" (click)="getAction(subItem.action)">
+                         {{ subItem.label }}=={{subItem.disabled}}
+                       </button>
+                    </mat-menu>
+                  </ng-container>
+                </mat-menu>
+            </div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+                <button type="button" (click)="btnClick()">{{buttonName}}</button>
+                <ng-container *ngIf="show" id="1">
+                  <div style="margin: 0 auto;text-align: left; background:lightblue">
+                   <h2>ServiceId: {{info.serviceId}}</h2>
+                  </div>
+                </ng-container>
+            </div>
+        </div>
+        <div>&nbsp;</div>
+
+        <p>Material(15) Customize Fields</p>
+        <div class="row">
+            <div class="col-sm-3">
+                <mat-form-field class="full-width field-height field-background no-hint" appearance="fill">
+                    <mat-label>Fill form field </mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>  
+            </div> 
+            <div class="col-sm-3">
+                <mat-form-field class="full-width field-height" appearance="outline">
+                    <mat-label>Outline form field</mat-label>
+                    <input matInput placeholder="Placeholder">
+                    <mat-icon matSuffix>close</mat-icon>
+                    <mat-hint>Hint</mat-hint>
+                </mat-form-field>
+            </div> 
+            <div class="col-sm-3">
+                <mat-form-field class="full-width no-underline">
+                    <div class="matfield-outline">
+                       <input matInput placeholder="amount" formControlName="amount" mask="separator.2" thousandSeparator="," decimalMarker="." prefix="$">
+                    </div>
+                </mat-form-field>  
+            </div> 
+            <div class="col-sm-3">
+                <mat-form-field class="full-width field-height">
+                    <mat-label>Select Option</mat-label>
+                    <mat-select formControlName="txtOption">
+                      <mat-option *ngFor="let grounp of optionGroups" [value]="grounp.name" class="option-background">
+                        {{grounp.name}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">    
+                    <div formArrayName="COMPs">
+                            <table style="width:100%;" aria-describedby="">
+                                    <tr>
+                                      <th scope="col" style="width: 16%; font-size: 13px; font-weight: bold;height:30px;">Stratified&nbsp;Amount</th>
+                                      <th scope="col">&nbsp;</th>
+                                      <th scope="col" style="width: 16%; font-size: 13px; font-weight: bold;">Funded&nbsp;Amount</th>
+                                      <th scope="col">&nbsp;</th>
+                                      <th scope="col" style="width: 16%; font-size: 13px; font-weight: bold;">Obligated&nbsp;Amount</th>
+                                      <th scope="col">&nbsp;</th>
+                                      <th scope="col" style="width: 16%; font-size: 13px; font-weight: bold;">Paid&nbsp;Amount</th>
+                                      <th scope="col">&nbsp;</th>
+                                      <th scope="col" style="width: 16%; font-size: 13px; font-weight: bold;">Fiscal&nbsp;Year</th>
+                                      <th scope="col">&nbsp;</th>
+                                      <th scope="col" style="width: 16%; font-size: 13px; font-weight: bold;">Collection&nbsp;Account</th>
+                                    </tr>
+                                    <tr *ngFor="let comp of COMPs.controls; let i=index" formGroupName="{{i}}">
+                                      <td style="width: 16%;">
+                                        <div class="matfield-outline">
+                                          <input matInput formControlName="txtStratifiedAm">
+                                        </div>
+                                        <!--{{comp.value.txtStratifiedAm}}-->
+                                      </td>
+                                      <td></td>
+                                      <td>
+                                        <div class="matfield-outline">
+                                          <input matInput formControlName="txtFundedAm">
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                      <td>
+                                        <div class="matfield-outline">
+                                          <input matInput formControlName="txtObligatedAm">
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                      <td>
+                                        <div class="matfield-outline">
+                                          <input matInput formControlName="txtPaidAm">
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                      <td>
+                                        <div class="matfield-outline">
+                                          <input matInput formControlName="txtBillFY">
+                                        </div>
+                                      </td>
+                                      <td></td>
+                                      <td>
+                                        <div class="matfield-outline">
+                                          <input matInput formControlName="txtCollectAcctNm">
+                                        </div>
+                                      </td>
+                                    </tr>
+                            </table>  
+                    </div>            
+            </div>
+        </div> 
+        <div class="row">&nbsp;</div>
+
+    </form>      
+</div>        

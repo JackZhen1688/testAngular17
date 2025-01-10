@@ -1,0 +1,62 @@
+
+/* Overwrite the CSS
+   1. Select inspect and point to the area which you like to overwrite the CSS.
+      The accordinate CSS will display on the right side debug editor (F12)
+   2. Copy the CSS script and make the changes which you like to
+   3. Add ::ng-deep in front of the CSS Script which you over write changes 
+*/
+/* text-field height size */
+::ng-deep .field-height .mat-mdc-text-field-wrapper {
+    height: 40px !important;
+}
+/* text-field-label position */
+::ng-deep .mat-mdc-form-field-flex {
+    margin-top: -7px !important;
+}
+/* text-field background */
+::ng-deep .field-background .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white;
+}
+
+/* text-field-hint height */
+::ng-deep .no-hint .mat-mdc-form-field-subscript-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+ 
+    background: red;
+    height: 0px;  
+}
+
+/* no work for material 15 */
+::ng-deep .no-underline .mat-mdc-form-field-underline {
+    display: none;
+}
+
+/* select option height 
+   Note: it apply for all */
+.mat-mdc-option {
+    height: 35px !important;
+    line-height: 35px !important;
+    min-height: 35px;
+}
+.option-background {
+  /*display: inline-block;
+    width: 1000px;*/
+    background-color: lightblue;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.matfield-outline {
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 25px;
+    padding-top: 1px;
+    padding-left: 3px;
+    padding-bottom: 1px;
+    width:100%;
+}

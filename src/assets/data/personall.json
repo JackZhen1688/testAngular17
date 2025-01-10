@@ -1,0 +1,69 @@
+[
+    {
+       "id":1,
+       "pertId":2,
+       "userId":"JZHEN",
+       "password":"123",
+       "firstName":"Jack",
+       "lastName":"Zhen",
+       "ssn":123456789,
+       "birthDay":"1996-10-26",
+       "address":{
+          "id":1,
+          "street":"65 St  9 Ave",
+          "city":"New York",
+          "state":"NY",
+          "zip":"10001"
+       },
+       "emgContact":{
+          "id":1,
+          "contactName":"Karena",
+          "contactRelation":"Spouse",
+          "contactPhone":"7013242234",
+          "contactEmail":"karena@gmail.com"
+       },
+       "phones":[
+          {
+             "id":38,
+             "phone":"(212) 123-3456",
+             "phoneType":"Cell"
+          }
+       ]
+    },
+    {
+       "id":6,
+       "pertId":2,
+       "userId":"DZHEN",
+       "password":"111",
+       "firstName":"Devon",
+       "lastName":"Zhen",
+       "ssn":999999999,
+       "birthDay":"1996-10-26",
+       "address":{
+          "id":2,
+          "street":"63 Windsor Pond Rd.",
+          "city":"West Windsor",
+          "state":"NJ",
+          "zip":"10058"
+       },
+       "emgContact":{
+          "id":6,
+          "contactName":"Jack",
+          "contactRelation":"Zhen",
+          "contactPhone":"2222222222",
+          "contactEmail":"j@mail.com"
+       },
+       "phones":[
+          {
+             "id":34,
+             "phone":"3333333333",
+             "phoneType":"Office"
+          },
+          {
+             "id":35,
+             "phone":"2222222222",
+             "phoneType":"Cell"
+          }
+       ]
+    }
+ ]

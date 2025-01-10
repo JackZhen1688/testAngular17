@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">  
+      <div>Form Control:</div>
+      <div class="row">
+          <div class="col-sm-3"> 
+            First Name:<br>
+            <input matInput [formControl]="frmCtlname">             <!--[(ngModel)]="credentials.password"-->         
+          </div>
+          <div class="col-sm-3">Value:<br>{{frmCtlname.value}}</div><!--{{credentials.password}} -->
+          <div class="col-sm-3"> 
+              <button type="button" (click)="updatefrmCtlname()">Update frmCtrl</button>
+          </div>
+          <div class="col-sm-3">
+              <button type="button" (click)="getServiceData()">Get Service Data</button>
+          </div>
+      </div>
+  
+    </form>  
+  </div>
+  
+  
+  

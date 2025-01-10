@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="fa fa-twitter"></i>
+                            </div>
+                            <p class="card-category">Followers</p>
+                            <h3 class="card-title">+245</h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+                            </div>
+                        </div>
+                </div>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4"><br><br>Dynamic variable this[x]: {{isShowTrainingBilling}}</div>
+        <div class="col-sm-3"><br><br>HostListener: {{num}}</div>
+    </div> 
+    <p>ngModel:</p>
+    <div class="row">
+        <div class="col-sm-3">
+            <mat-form-field style="width: 100%;">
+                <mat-label>ngModel input</mat-label><!-- define credentials Object in ts -->
+                <input matInput type="text" [(ngModel)]="credentials.password" name="credentials" #ctrl="ngModel" required>
+                <button *ngIf="credentials.password" matSuffix mat-icon-button aria-label="Clear" (click)="credentials.password=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-3">PWD: {{credentials.password}}  <br>Valid: {{ctrl.valid}}</div>
+        <div class="col-sm-2">                        <!-- class="btn btn-primary"  static -->
+          <button type="button" (click)="setPassword()" [ngClass]="['btn', 'btn-primary']">SetPassword</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="button" (click)="getPassword()">GetPassowrd</button>
+        </div>
+    </div>  
+    <div class="row">
+
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4"></div>
+    </div>   
+
+</div>

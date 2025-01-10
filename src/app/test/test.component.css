@@ -1,0 +1,21 @@
+
+/* Overwrite the CSS
+   1. Select inspect and point to the area which you like to overwrite the CSS.
+      The accordinate CSS will display on the right side debug editor (F12)
+   2. Copy the CSS script and make the changes which you like to
+   3. Add ::ng-deep in front of the CSS Script which you make the changes 
+*/
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white;
+}  
+
+.matfield-outline {
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 25px;
+    padding-top: 1px;
+    padding-left: 3px;
+    padding-bottom: 1px;
+    width:100%;
+  }

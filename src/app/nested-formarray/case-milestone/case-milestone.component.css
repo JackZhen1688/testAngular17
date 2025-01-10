@@ -1,0 +1,284 @@
+::ng-deep .no-underline .mat-form-field-underline {
+    display: none;
+}
+
+.mat-accordion .mat-header-row {
+    padding-left: 1.5rem;
+    padding-right: 2rem;
+    border-bottom: none;
+    background-color: #b5f0fa;
+}
+
+.mat-expansion-panel-header.mat-row {
+    border-bottom: none;
+}
+
+.mat-expansion-panel-header:hover {
+    background-color: wheat !important;
+}
+
+.mat-table {
+    display: block;
+    border: 1px solid black;
+    height: 600px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.mat-header-row {
+    min-height: 45px;
+}
+
+.mat-row {
+    min-height: 40px;
+}
+
+.mat-row, .mat-header-row {
+    display: flex;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    align-items: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.mat-header-cell-5 {
+    width: 5%;
+    font-weight: bold;  
+    color: black;
+    font-size: 12px;
+}
+
+.mat-header-cell-10 {
+    width: 10%;
+    font-weight: bold;  
+    color: black;
+    font-size: 12px;
+}
+
+.mat-header-cell-15 {
+    width: 15%;
+    font-weight: bold;  
+    color: black;
+    font-size: 12px;
+}
+
+.mat-header-cell-20 {
+    width: 20%;
+    font-weight: bold;  
+    color: black;
+    font-size: 12px;
+}
+
+.mat-cell-5 {
+    width: 5%;
+    overflow: hidden;
+    word-wrap: break-word;
+    color: black;
+}
+
+.mat-cell-10 {
+    width: 10%;
+    overflow: hidden;
+    word-wrap: break-word;
+    color: black;
+}
+  
+.mat-cell-15 {
+    width: 15%;
+    overflow: hidden;
+    word-wrap: break-word;
+    color: black;
+}
+.mat-cell-20 {
+    width: 20%;
+    overflow: hidden;
+    word-wrap: break-word;
+    color: black;
+}
+
+.table-width-1 {
+    width: 1%; 
+    font-size: 11px;
+}
+
+.table-width-10 {
+    width: 10%; 
+    font-size: 11px;
+}
+
+.table-width-15 {
+    width: 15%; 
+    font-size: 11px;
+}
+
+.table-width-25 {
+    width: 25%; 
+    font-size: 11px;
+}
+
+.table-width-45 {
+    width: 45%; 
+    font-size: 11px;
+}
+
+.table-width-100 {
+    width: 100%; 
+    font-size: 11px;
+}
+
+/*---------------------*/
+.full-width {
+    width: 100%;
+}
+
+.cust-label {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.mat-option {
+    font-size: 14px;
+    height: 25px !important;
+    line-height: 25px !important;
+}
+
+.matfield-outline {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 25px;
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-bottom: 1px;
+    width:95%;
+    color: gray;
+}
+
+.matfield-outline_editable {
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 25px;
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-bottom: 1px;
+    width:95%;
+}
+
+.btn-dot {
+    font-size: 13px;
+    background-color: rgb(254, 254, 254);
+    align-content: center;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 25px;
+    width: 25px;
+}
+
+.btn-customize-delete {
+    font-size: 12px;
+    height: 23px;
+    line-height: 8px;
+    width: 80px;
+    align-content: center;
+    background-color: rgb(238, 73, 73);
+    padding-top: 7px;
+}
+  
+.btn-customize-add {
+    font-size: 13px;
+    color: #007db0;
+    font-weight: bold;
+    height: 25px;
+    width: 80px;
+    align-content: center;
+    background-color: #e7eff6 ;
+    border-color: lightgray;
+    padding-top: 2px; 
+} 
+
+.btn-customize-save {
+    font-size: 13px;
+    height: 25px;
+    /*line-height: 8px;*/
+    width: 100px;
+    align-content: center;
+    border-color: lightgray;
+    padding-top: 1px; 
+}
+
+em.fa.fa-plus {
+    display: inline-block;
+    border-radius: 60px;
+    padding: 0.1em 0.2em;
+    color:#007db0;
+    border: 1px solid #007db0;
+}
+
+.height-between-rows {
+    height: 10px;
+}
+
+.height-between-rows-20 {
+    height: 20px;
+}
+
+.textarea-customize {
+    border: 1px solid #cccccc; 
+    border-radius: 4px;
+    color: gray;
+}
+
+.textarea-customize_editable {
+    border: 1px solid black; 
+    border-radius: 4px;
+}
+
+.calendar-size {
+    font-size: 23px;
+}
+
+.section-box {
+    border: 1px solid rgb(148, 145, 145);
+    padding: 10px;
+    height: 125px;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+
+::ng-deep .mat-form-field-infix {
+    height: 1px;
+    font-size: 12px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: .15em;
+}
+
+.date_container {        
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 25px;
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-bottom: 1px;
+
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .date_container_editable {        
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 25px;
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-bottom: 1px;
+
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

@@ -1,0 +1,37 @@
+<form [formGroup]="inheritForm" (ngSubmit)="onSubmit();">
+    <div class="container-fluid">
+      <p>&nbsp;</p>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 text-end" style="background: lightskyblue;">
+          <mat-slide-toggle [checked]="checked" (change)="onToggleChange($event);">Edit</mat-slide-toggle>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      <div class="row">
+          <div class="col-12">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">Test Field Changes:
+          <input matInput formControlName="txtTest" class="font-color" mask="separator.2" 
+                 thousandSeparator="," decimalMarker="." [allowNegativeNumbers]="true" [specialCharacters]="specialCharacters" prefix="$" [readonly]="!isEditable" >
+        </div>
+        <div class="col-3"><br>
+            <button type="button" (click)="onSubmit()">submit To setServiceData</button>
+        </div>
+        <div class="col-2">formValue<br>{{formValue | json }}</div>
+        <div class="col-2"></div>
+      </div>
+      <div class="row">
+          <div class="col-12">&nbsp;</div>
+      </div>
+      <div class="row">
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+          <div class="col-3">&nbsp;</div>
+      </div>
+    </div>
+
+</form>

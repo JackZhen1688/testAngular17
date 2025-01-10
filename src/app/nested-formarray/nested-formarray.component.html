@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+    <div class="container">
+      <p>&nbsp;</p>
+      <p>Test:<input formControlName="txtTest" placeholder="txtTest">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <button type="button" (click)="addUser()">New User</button>&nbsp;&nbsp;
+         <button type="submit" >submit</button>
+      </p>
+    </div>
+    <div formArrayName="users">
+      <!-- User Start-->
+      <div class="container user-container" *ngFor="let user of users.controls; let i = index" formGroupName="{{i}}">
+        <div class="row">
+          <div class="col-8">Name
+            <input formControlName="txtName" placeholder="Name">
+          </div>
+          <div class="col-4 text-center">
+            <button *ngIf="users.controls.length > 1" type="button" (click)="delUser(i)">DelUser</button>
+            <!--*ngIf="form.controls.users.controls.length > 1"-->
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-8">
+            Phones
+          </div>
+        </div>
+        <!-- Phone Start-->
+        <div class="row" formArrayName="phones">
+          <!-- input filed will be disabled 
+          <div class="col-6" *ngFor="let phone of user.value.phones; let j = index" formGroupName="{{j}}">
+              {{phone.txtNum}}
+          -->
+          <div class="col-6" *ngFor="let phone of phones(i).controls; let j = index" formGroupName="{{j}}">
+            <!--{{phone.value.txtNum}}-->
+            <div class="container user-container">
+              <div class="row">
+                <div class="col-8"><!--{{phone.txtNum | json}}{{phone.txtType | json}}-->
+                  <input matInput type="text" formControlName="txtNum" placeholder="Phone">
+                  <select formControlName="txtType">
+                      <option *ngFor="let type of types" [value]="type.name">{{ type.name }}</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <button *ngIf="user.value.phones.length > 1" type="button" (click)="delPhone(i,j)">DelPhone</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 text-center">
+            <button type="button" (click)="addPhone(i)">AddPhone</button>
+          </div>
+        </div> 
+        <!-- Phone End-->
+      </div>
+      <!-- User End-->
+    </div>
+    <div class="container">
+        <div style="height: 10px;"></div>
+        <p><button type="button" (click)="addUser()" class="btn btn-info btn-customize-add"><em class="fa fa-plus"></em>&nbsp;Add&nbsp;</button></p>
+        <p><a routerLink="/caseMilestone">Case Milestone</a></p>
+    </div>
+
+  </form>
+  

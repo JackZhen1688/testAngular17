@@ -1,0 +1,284 @@
+<div class="container-fluid">
+    <form [formGroup]="milestoneForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <mat-accordion displayMode="flat" multi class="mat-table">
+          <section class="mat-header-row">
+              <span class="mat-header-cell-15"><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Milestone&nbsp;ID</span>
+              <span class="mat-header-cell-20"><br/>&nbsp;&nbsp;Milestone&nbsp;Name</span>
+              <span class="mat-header-cell-10">&nbsp;&nbsp;Milestone<br/>&nbsp;&nbsp;Category</span>
+              <span class="mat-header-cell-10"><br/>&nbsp;&nbsp;Actual&nbsp;Date</span>
+              <span class="mat-header-cell-5"><br/>&nbsp;&nbsp;Person</span>
+              <span class="mat-header-cell-10"><br/>&nbsp;&nbsp;Planned&nbsp;Date</span>
+              <span class="mat-header-cell-5"><br/>&nbsp;&nbsp;Person</span>
+              <span class="mat-header-cell-10">&nbsp;&nbsp;Revised<br/>&nbsp;&nbsp;Planned&nbsp;Date</span>
+              <span class="mat-header-cell-5"><br/>&nbsp;&nbsp;Person</span>
+              <span class="mat-header-cell-10">&nbsp;</span>
+          </section>
+
+          <div formArrayName="milestones"><!--[expanded]="last&&addMilestoneFlag"-->
+              <mat-expansion-panel [hideToggle]="false" [disabled]="true" #mep="matExpansionPanel" [expanded]="step===i" (opened)="setPanel(i)"
+              *ngFor="let milestone of milestones.controls; let i = index; let last = last" formGroupName="{{i}}">
+              <mat-expansion-panel-header class="mat-row">
+                  <span class="mat-cell-15">
+                      <mat-form-field class="full-width no-underline">
+                        <div class="matfield-outline" [hidden]="!isEditable?(isEditable):(!isEditable||mep.expanded)">
+                          <input matInput type="text" formControlName="txtMilestoneId">
+                        </div>
+                        <div class="matfield-outline_editable" [hidden]="isEditable?(isEditable&&!mep.expanded):(!isEditable)">
+                          <input matInput type="text" formControlName="txtMilestoneId">
+                        </div>
+                        <span matPrefix *ngIf="!mep.expanded"><img width="25" height="25" src="assets/images/down.png" alt="" (click)="mep.expanded = !mep.expanded; getMilestoneId(milestone.value.txtMilestoneId)">&nbsp;&nbsp;&nbsp;</span>
+                        <span matPrefix *ngIf="mep.expanded"><img width="25" height="25" src="assets/images/up.png" alt="" (click)="mep.expanded = !mep.expanded; getMilestoneId(milestone.value.txtMilestoneId)">&nbsp;&nbsp;&nbsp;</span>
+                        <span matSuffix>
+                          <button type="button" class="btn-default btn-dot" (click)="test();">...</button>
+                        </span>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-20">
+                      <mat-form-field class="full-width no-underline">
+                        <div class="matfield-outline">
+                           <input matInput type="text" formControlName="txtMilestoneName" [readonly]='true'>
+                        </div>
+                        <span matPrefix>&nbsp;</span>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-10">
+                      <mat-form-field class="full-width no-underline">
+                        <div class="matfield-outline">
+                           <input matInput type="text" formControlName="txtMilestoneCategoryCd" [readonly]='true'>
+                        </div>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-10">
+                      <mat-form-field class="full-width no-underline">
+                        <div [class]="isEditable?dateBorderBlack:dateBorderGrey">
+                          <input matInput [matDatepicker]="picker" formControlName="txtActualDate_A">  
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </div>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-5">
+                      <mat-form-field class="full-width no-underline">
+                        <div class="matfield-outline">
+                           <input matInput type="text" formControlName="txtPersonId_A" [readonly]='true'>
+                        </div>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-10">
+                      <mat-form-field class="full-width no-underline">
+                        <div [class]="isEditable?dateBorderBlack:dateBorderGrey">
+                          <input matInput [matDatepicker]="picker1" formControlName="txtPlannedDate_P" required>  
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                        </div>
+                        <div>                                                               <!--? object is possibly 'null' -->                            
+                        <mat-hint align="start" style="color: red;" *ngIf="(getActualDate_P(i)?.dirty || getActualDate_P(i)?.touched)">  
+                          <span *ngIf="getActualDate_P(i)?.invalid">                                       
+                            Invalid date.
+                          </span>
+                        </mat-hint> 
+                        </div>
+                    </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-5">
+                      <mat-form-field class="full-width no-underline">
+                        <div class="matfield-outline">
+                           <input matInput type="text" formControlName="txtPersonId_P" [readonly]='true'>
+                        </div>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-10">
+                      <mat-form-field class="full-width no-underline" >
+                        <div class="matfield-outline">
+                          <input matInput [matDatepicker]="picker2" formControlName="txtRevisedDate_R">  
+                        </div>
+                        <span matSuffix class="calendar-size">
+                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>
+                        </span>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-5">
+                      <mat-form-field class="full-width no-underline">
+                        <div class="matfield-outline">
+                           <input matInput type="text" formControlName="txtPersonId_R" [readonly]='true'>
+                        </div>
+                      </mat-form-field> 
+                  </span>
+                  <span class="mat-cell-10" style="text-align: center;">
+                      <div>&nbsp;</div>
+                      <button type="button" (click)="delMilestone(i)" class="btn btn-primary btn-customize-delete">Delete</button>
+                  </span>
+              </mat-expansion-panel-header>
+  
+              <div>
+                  <div class="row">
+                      <div class="col-sm-1">
+                        <div class="cust-label">
+                          <mat-label>Override</mat-label>
+                        </div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;<mat-checkbox formControlName="txtOverideIn"></mat-checkbox></div>
+                      </div>          
+                      <div class="col-sm-2">
+                        <div class="cust-label">
+                          <mat-label>First&nbsp;Occurrence&nbsp;Date</mat-label>
+                        </div>
+                         <div class="matfield-outline">
+                          <input matInput type="text" formControlName="txtFirstOccurDate">
+                        </div>
+                      </div> 
+                      <div class="col-sm-3"></div>          
+                      <div class="col-sm-3">
+                        <div class="cust-label">
+                          <mat-label>Actual Date Person</mat-label>
+                        </div>
+                        <div class="matfield-outline">
+                          <input matInput type="text" formControlName="txtPersonName_A" [readonly]='false'>
+                        </div>
+                      </div>          
+                      <div class="col-sm-3">
+                        <div class="cust-label">
+                          <mat-label>Actual Date Activity</mat-label>
+                        </div>
+                        <div class="matfield-outline">
+                          <input matInput type="text" formControlName="txtActivityId_A" [readonly]='true'>
+                        </div>
+                      </div>          
+                  </div> 
+                  <div class="height-between-rows">&nbsp;</div>
+                  <div class="row">
+                      <div class="col-sm-5">
+                        <div class="cust-label">
+                          <mat-label>Comments</mat-label>
+                        </div>
+                          <textarea matInput formControlName="txtComments" rows="5" [class]="isEditable?txtBorderBlack:txtBorderGrey"></textarea>
+                      </div>
+                      <div class="col-sm-1"></div>  
+                      <div class="col-sm-6">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="height-between-rows"></div>
+                            <div class="cust-label">
+                              <mat-label>Actual Date Person</mat-label>
+                            </div>
+                            <div class="matfield-outline">
+                              <input matInput type="text" formControlName="txtPersonName_P" [readonly]='true'>
+                            </div>
+                          </div>          
+                          <div class="col-sm-6">
+                            <div class="height-between-rows"></div>
+                            <div class="cust-label">
+                              <mat-label>Actual Date Activity</mat-label>
+                            </div>
+                            <div class="matfield-outline">
+                              <input matInput type="text" formControlName="txtActivityId_P" [readonly]='true'>
+                            </div>
+                          </div>  
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="height-between-rows-20"></div>
+                            <div class="cust-label">
+                              <mat-label>Actual Date Person</mat-label>
+                            </div>
+                            <div class="matfield-outline">
+                              <input matInput type="text" formControlName="txtPersonName_R" [readonly]='true'>
+                            </div>
+                          </div>          
+                          <div class="col-sm-6">
+                            <div class="height-between-rows-20"></div>
+                            <div class="cust-label">
+                              <mat-label>Actual Date Activity</mat-label>
+                            </div>
+                            <div class="matfield-outline">
+                              <input matInput type="text" formControlName="txtActivityId_R" [readonly]='true'>
+                            </div>
+                          </div>  
+                        </div>
+                      </div>       
+                  </div>
+                  <div class="height-between-rows">&nbsp;</div>
+                  <div class="row">
+                      <div class="col-sm-9">
+                        <div class="cust-label">
+                          <mat-label>Comment Reasons</mat-label>
+                        </div>
+                        <div class="section-box">
+                          <div formArrayName="commReasons">
+                            <table class="table-width-100" aria-describedby="">
+                              <tr>
+                                <th scope="col" class="table-width-10"><br/>Code</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col" class="table-width-25"><br/>Reason</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col" class="table-width-10">Days<br/>Proposed</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col" class="table-width-10">Days<br/>Actual</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col" class="table-width-45"><br/>Comments</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col" class="table-width-1">&nbsp;</th>
+                              </tr>
+                              <tr *ngFor="let commReason of commReasons(i).controls; let j = index" formGroupName="{{j}}">
+                                  <td>
+                                    <div class="matfield-outline">
+                                        <mat-select class="down-arrow" formControlName="txtCode">
+                                          <mat-option [value]="rejectReason.MILESTONE_REJECT_REASON_ID" *ngFor="let rejectReason of rejectReasons">
+                                              {{rejectReason.MILESTONE_REJECT_REASON_ID}}
+                                          </mat-option>
+                                        </mat-select>
+                                    </div> 
+                                  </td>
+                                  <td></td>
+                                  <td>
+                                    <div class="matfield-outline">
+                                      <input matInput type="text" formControlName="txtReason">
+                                    </div>
+                                  </td>
+                                  <td></td>
+                                  <td>
+                                    <div class="matfield-outline">
+                                      <input matInput type="text" formControlName="txtDaysProposed">
+                                    </div>
+                                  </td>
+                                  <td></td>
+                                  <td>
+                                    <div class="matfield-outline">
+                                      <input matInput type="text" formControlName="txtDaysActual">
+                                    </div>
+                                  </td>
+                                  <td></td>
+                                  <td>
+                                    <div class="matfield-outline">
+                                      <input matInput type="text" formControlName="txtComments">
+                                    </div>
+                                  </td>
+                                  <td></td>
+                                  <td>
+                                    <button type="button" (click)="delCommReason(i,j)" class="btn btn-primary btn-customize-delete">Delete</button>
+                                  </td>
+                              </tr>
+
+                            </table>              
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3"></div>
+                  </div>
+                  <div class="height-between-rows"></div>
+                  <button type="button" (click)="addCommReason(i)" class="btn btn-info btn-customize-add"><em class="fa fa-plus"></em>&nbsp;Add&nbsp;</button>
+              </div>
+              </mat-expansion-panel>    
+          </div>
+  
+      </mat-accordion>
+      <div class="height-between-rows"></div>
+      <div><button type="button" (click)="addMilestone()" class="btn btn-info btn-customize-add"><em class="fa fa-plus"></em>&nbsp;Add&nbsp;</button></div>
+      <div class="row">
+          <div class="col-sm-8"></div>
+          <div class="col-sm-4">
+              <button type="submit" class="btn btn-primary btn-customize-save">Save</button>            
+          </div>
+      </div>
+  </form>
+  </div>
