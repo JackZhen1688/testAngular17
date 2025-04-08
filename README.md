@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+============
+Angular 17 above major different is the standalone components, without app.module.
+1. standalone = true
+2. import modules [..]
+3. using the old control *ngIf (need to commonModule) or
+   using the new control by @if instead

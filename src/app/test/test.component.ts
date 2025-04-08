@@ -60,9 +60,10 @@ export class TestComponent {
     //this.groupsLoop();
     //this.changeObjValue(this.info);
     //this.cloneObj(this.obj);
-    //this.addObject("testing");
+    this.addObject("testing");
 
     this.breakLoop2();
+    console.log("return==="+this.test());
   }
 
   initLoad(e:any) {
@@ -157,11 +158,20 @@ export class TestComponent {
     const copy = Object.assign({}, obj);
     console.log("Clone Ojb=="+JSON.stringify(copy));
   }
-  addObject(test:string) {    //1. test as name 2. name = "name"
+  addObject(test1:any) {                 //1. test as name 2. name = "name"
     var myJson = { "name": "mamad", family: "mirzaei" }
     //let x = { ...myJson, "test":"testing"};
-    var newObj = { ...myJson, test};
+    var newObj = { ...myJson, test1};    //2. Add property
     console.log("new Ojbect==="+JSON.stringify(newObj))
   }
 
+  test () {
+    let x: any = 'a';
+    let y: any = 'b';
+    if (x && y) {
+        console.log("=====inside the function");
+        return true;
+    } 
+    return false;
+  }
 }

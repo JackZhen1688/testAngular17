@@ -19,6 +19,11 @@ export class DialogMessageYesnoComponent {
               @Inject(MAT_DIALOG_DATA) 
               public data: DialogMegs) { }
 
+  ngOnInit(): void {
+    console.log("Message: "+this.data.message);
+
+  }
+
   onOk(): void {
   this.dialogRef.close(); 
   }
